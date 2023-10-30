@@ -34,5 +34,18 @@ namespace ProyectoMVC_MIUI_ConectarAPI.Controllers
             return lista;
         }
 
+
+        public async Task<List<PersonaCLS>> FiltrarPersonas(string nombre)
+        {
+            var cliente = _httpClientFactory.CreateClient();
+            cliente.BaseAddress = new Uri(_baseUrl);
+
+            string strCadena = await cliente.GetStringAsync("/api/persona/"+ nombre);
+
+            List<PersonaCLS> lista = JsonSerializer.Deserialize<List<PersonaCLS>>(strCadena);
+
+            return lista;
+        }
+
     }
 }
