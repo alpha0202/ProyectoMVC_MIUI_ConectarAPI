@@ -1,3 +1,4 @@
+using ProyectoMVC_MIUI_ConectarAPI.Repositorio;
 using System.Configuration;
 
 namespace ProyectoMVC_MIUI_ConectarAPI
@@ -11,6 +12,10 @@ namespace ProyectoMVC_MIUI_ConectarAPI
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddHttpClient();
+
+
+            //inyectando Category Repository
+            builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
 
             var app = builder.Build();
 
