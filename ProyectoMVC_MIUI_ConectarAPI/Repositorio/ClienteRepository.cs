@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using CapaEntidad;
+using System.Text.Json;
 
 namespace ProyectoMVC_MIUI_ConectarAPI.Repositorio
 {
@@ -48,6 +49,24 @@ namespace ProyectoMVC_MIUI_ConectarAPI.Repositorio
                 return (T)Activator.CreateInstance(typeof(T));
             }
 
+        }
+
+        public async Task<PersonaCLS> GetDetailbyId(IHttpClientFactory httpClientFactory, string urlBase, string rutaAPI)
+        {
+            try
+            {
+                var client = _httpClientFactory.CreateClient();
+                client.BaseAddress = new Uri(urlBase);
+                string cadena = await client.GetStringAsync(rutaAPI);
+                var Lstresult = JsonSerializer.Deserialize<PersonaCLS>(cadena);
+                return Lstresult;
+
+            }
+            catch (Exception e)
+            {
+
+                return (PersonaCLS)Activator.CreateInstance(typeof(PersonaCLS));
+            }
         }
     }
 }

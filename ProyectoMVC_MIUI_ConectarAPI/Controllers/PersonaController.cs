@@ -50,5 +50,17 @@ namespace ProyectoMVC_MIUI_ConectarAPI.Controllers
             return await _clienteRepository.GetAll<PersonaCLS>(_httpClientFactory, _baseUrl, "/api/persona/" + nombre);
         }
 
+        public async Task<PersonaCLS> RecuperarPersonasById(int id)
+        {
+            //var cliente = _httpClientFactory.CreateClient();
+            //cliente.BaseAddress = new Uri(_baseUrl);
+
+            //string strCadena = await cliente.GetStringAsync("/api/persona/"+ nombre);
+
+            //List<PersonaCLS> lista = JsonSerializer.Deserialize<List<PersonaCLS>>(strCadena);
+
+            return await _clienteRepository.GetDetailbyId(_httpClientFactory, _baseUrl, "/api/persona/personaid/" + id);
+        }
+
     }
 }
